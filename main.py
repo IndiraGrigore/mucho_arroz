@@ -8,8 +8,8 @@ padding = {
 }
 msg = {
     "unit": "granos",
-    "weight": "gramos",
-    "t_weight": "toneladas",
+    "weight": "toneladas",
+    "t_weight": "Megatoneladas",
 }
 
 
@@ -31,7 +31,7 @@ def build_content():
 
     for exponente in range(64):
         granos_por_casilla = 2 ** exponente
-        peso_por_casilla = peso_por_grano * granos_por_casilla
+        peso_por_casilla = peso_por_grano * granos_por_casilla / 1e+6
 
         ui_exponente = str(exponente).ljust(padding["casilla"])
         ui_granos_por_casilla = str(granos_por_casilla).center(padding["unit"])
@@ -58,4 +58,4 @@ data = build_content()
 
 print(build_box(data['content']))
 print(f"  · Granos totales: {data['total_number']}")
-print(f"  · Peso total = {data['total_weight'] / 1000000} { msg['t_weight'] }")
+print(f"  · Peso total = {data['total_weight'] / 1e+12} { msg['t_weight'] }")
